@@ -2,26 +2,26 @@ import React, { useEffect, useState } from "react";
 import TimeBox from "./TimeBox";
 import { calculateDeltaBetweenDates, convertDeltaToDaysHoursMinutes } from "./utils/date";
 
-const justiceDate = new Date(2023, 5, 18, 17);
-let RemainingTimerInterval: any;
+const timerEndDate = new Date(2023, 5, 18, 17);
 
 const RemainingTimer: React.FC = () => {
-  const [remainingTime, setRemainingTime] = useState(calculateDeltaBetweenDates(justiceDate));
+  const [remainingTime, setRemainingTime] = useState(calculateDeltaBetweenDates(timerEndDate));
+  let remainingTimerInterval: any;
 
   useEffect(() => {
-    RemainingTimerInterval = setInterval(() => {
-      setRemainingTime(calculateDeltaBetweenDates(justiceDate));
+    remainingTimerInterval = setInterval(() => {
+      setRemainingTime(calculateDeltaBetweenDates(timerEndDate));
     }, 1000);
 
     return () => {
-      clearInterval(RemainingTimerInterval);
+      clearInterval(remainingTimerInterval);
     };
   }, []);
 
   if (remainingTime === 0) {
-    clearInterval(RemainingTimerInterval);
+    clearInterval(remainingTimerInterval);
 
-    return <div data-testid="timer-ended-text">Başardık! Artık yeni bir problemimiz var...</div>;
+    return <div data-testid="timer-ended-text">Timer finished!</div>;
   }
 
   const { remainingDays, remainingHours, remainingMinutes, remainingSeconds } =

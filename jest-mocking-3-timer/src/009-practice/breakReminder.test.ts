@@ -11,10 +11,8 @@ describe("breakReminder() tests", () => {
     jest.spyOn(console, "log");
 
     mockBreakActivity = jest.fn();
-    // test edeceğimiz metodu beforeAll'da çağırdık
-    // çünkü setTimeout kodu bekletecektir. bu sayede
-    // her testte ayrı ayrı çağırma zahmetine girmeden
-    // kademe kademe ilerletebiliriz.
+    // we will call the method we will test in beforeAll
+    // and advance it step by step in each test.
     breakReminder(mockBreakActivity);
   });
 
@@ -23,7 +21,7 @@ describe("breakReminder() tests", () => {
   });
 
   test("should start work on first iteration", () => {
-    expect(console.log).toHaveBeenCalledWith("Starting working...");
+    expect(console.log).toHaveBeenCalledWith("starting working...");
     expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 3000);
   });
 
@@ -36,7 +34,7 @@ describe("breakReminder() tests", () => {
   test("should end work on last iteration", () => {
     jest.advanceTimersByTime(3000);
 
-    expect(console.log).toHaveBeenCalledWith("Ending working.");
+    expect(console.log).toHaveBeenCalledWith("ending working.");
     expect(clearInterval).toHaveBeenCalled();
   });
 });

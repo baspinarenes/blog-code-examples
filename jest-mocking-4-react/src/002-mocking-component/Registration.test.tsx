@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import Registration, { RegistrationProps } from "./Registration";
+import Registration from "./Registration";
 
 jest.mock("./LoginForm", () => {
   return {
@@ -16,22 +16,12 @@ jest.mock("./RegisterForm", () => {
 });
 
 describe("<Registration /> tests", () => {
-  let props: RegistrationProps;
-
-  beforeEach(() => {
-    props = {
-      isRegistered: false,
-    };
-  });
-
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it("should render the register form when isRegistered is false", () => {
-    props.isRegistered = false;
-
-    render(<Registration {...props} />);
+    render(<Registration isRegistered={false} />);
 
     expect(RegisterForm).toHaveBeenCalled();
     expect(LoginForm).not.toHaveBeenCalled();
@@ -39,9 +29,7 @@ describe("<Registration /> tests", () => {
   });
 
   it("should render the login form when isRegistered is true", () => {
-    props.isRegistered = true;
-
-    render(<Registration {...props} />);
+    render(<Registration isRegistered={true} />);
 
     expect(LoginForm).toHaveBeenCalled();
     expect(RegisterForm).not.toHaveBeenCalled();

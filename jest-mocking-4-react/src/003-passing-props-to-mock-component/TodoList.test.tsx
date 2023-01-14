@@ -5,7 +5,7 @@ import TodoList from "./TodoList";
 
 describe("<TodoList> tests", () => {
   test("should render only incomplete todo items (wrong)", () => {
-    jest.spyOn(TodoItemModule, "default").mockReturnValue(<div data-testid="todo-item"></div>);
+    jest.spyOn(TodoItemModule, "default").mockReturnValue(<div data-testid="todo-item" />);
 
     const mockTodos = [
       {

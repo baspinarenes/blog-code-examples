@@ -29,7 +29,7 @@ describe("<Photos /> tests", () => {
       },
     ];
 
-    jest.spyOn(axios, "get").mockImplementation((url: any): any => {
+    jest.spyOn(axios, "get").mockImplementation((url: string): any => {
       if (url === "https://jsonplaceholder.typicode.com/photos") {
         return Promise.resolve(mockPhotos);
       }
@@ -41,11 +41,9 @@ describe("<Photos /> tests", () => {
   test("should render greeting text without name (wrong)", async () => {
     const { debug } = render(<Photos />);
 
-    // useEffect'teki fetch metodu ile veriyi çektikten sonra
-    // state değerini güncelliyoruz. ancak bu durum meydana
-    // gelmesini beklediğimiz render test içerisinde beklenmez.
-    // ve eski dom içeriği görürüz. testi bekletmek adına `photo`
-    // test id'li elementin render edilmesini bekleriz.
+    // rerender triggered after data is fetched, but during testing
+    // we need to wait for it to render. therefore, we wait for
+    // the element with 'photo' testid to be rendered.
     const photoElements = await screen.findAllByTestId("photo");
     debug();
 
@@ -60,11 +58,6 @@ describe("<Photos /> tests", () => {
 
     const { debug } = render(<Photos />);
 
-    // useEffect'teki fetch metodu ile veriyi çektikten sonra
-    // state değerini güncelliyoruz. ancak bu durum meydana
-    // gelmesini beklediğimiz render test içerisinde beklenmez.
-    // ve eski dom içeriği görürüz. testi bekletmek adına `photo`
-    // test id'li elementin render edilmesini bekleriz.
     const photoElements = await screen.findAllByTestId("photo");
     debug();
 

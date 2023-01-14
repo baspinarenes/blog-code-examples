@@ -4,7 +4,7 @@ jest.useFakeTimers({
 });
 
 test("playground", () => {
-  console.log("setTimeout():", setTimeout.toString());
-  console.log("setInterval():", setInterval.toString());
-  console.log("Date.now():", new Date(Date.now()));
+  console.log("setTimeout:", setTimeout.toString());
+  console.log("setInterval:", setInterval.toString());
+  console.log("Date.now:", new Date(Date.now()));
 });

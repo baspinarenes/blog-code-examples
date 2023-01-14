@@ -1,9 +1,9 @@
-import callbackRunner from "./callbackRunner";
+import setupTimeouts from "./setupTimeouts";
 
 test("playground", () => {
   jest.useFakeTimers();
 
-  callbackRunner();
+  setupTimeouts();
 
   console.log("Step 1:");
   jest.advanceTimersToNextTimer();

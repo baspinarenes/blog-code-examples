@@ -1,7 +1,11 @@
-function callAfterThreeSeconds(callback: () => void) {
-  setTimeout(() => {
-    callback();
-  }, 3000);
-}
+export default function callAfterThreeSeconds(callback: () => void) {
+  console.log("before setTimeout");
 
-export default callAfterThreeSeconds;
+  setTimeout(() => {
+    console.log("before callback");
+    callback();
+    console.log("after callback");
+  }, 3000);
+
+  console.log("after setTimeout");
+}

@@ -6,16 +6,16 @@ jest.spyOn(global, "setTimeout");
 test("should wait 10 second before call callback", () => {
   const mockCallback = jest.fn();
 
-  console.log("kalan fake timer sayısı:", jest.getTimerCount());
+  console.log("number of fake timers remaining:", jest.getTimerCount());
   callAfterThreeSeconds(mockCallback);
-  console.log("kalan fake timer sayısı:", jest.getTimerCount());
+  console.log("number of fake timers remaining:", jest.getTimerCount());
 
-  // runAllTimers öncesinde timer'lar sona ermediği
-  // için callback'in çağrılmadığından emin olalım.
+  // make sure the callback is not called because
+  // the timers dont expire before runAllTimers
   expect(mockCallback).not.toHaveBeenCalled();
 
   jest.runAllTimers();
-  console.log("kalan fake timer sayısı:", jest.getTimerCount());
+  console.log("number of fake timers remaining:", jest.getTimerCount());
 
   expect(mockCallback).toHaveBeenCalled();
 });

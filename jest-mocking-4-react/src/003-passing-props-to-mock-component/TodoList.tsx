@@ -4,7 +4,7 @@ import TodoItem from "./TodoItem";
 const TodoList: React.FC<TodoListProps> = ({ todos }) => {
   return (
     <div>
-      <p>Yapılacaklar:</p>
+      <p>Todos:</p>
       {todos.map((todo) => (
         <TodoItem
           title={todo.title}

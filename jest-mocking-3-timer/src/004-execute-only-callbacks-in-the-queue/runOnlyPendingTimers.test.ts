@@ -1,9 +1,9 @@
-import callbackRunner from "./callbackRunner";
+import setupTimeouts from "./setupTimeouts";
 
 test("playground", () => {
   jest.useFakeTimers();
 
-  callbackRunner();
+  setupTimeouts();
 
   jest.runOnlyPendingTimers();
 });
